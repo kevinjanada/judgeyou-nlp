@@ -1,3 +1,4 @@
 ## Dependencies
-ffmpeg
-youtube-dl
+ffmpeg  
+youtube-dl  
+deepspeech  
