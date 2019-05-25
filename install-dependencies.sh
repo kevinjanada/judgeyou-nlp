@@ -5,11 +5,11 @@ sudo apt-get install ffmpeg
 pip install opencv-python youtube-dl
 
 # ------ DEEPSPEECH -------------
-# Git LFS needed for deepspeech
-sudo add-apt-repository ppa:git-core/ppa
-curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
-sudo apt-get install git-lfs
-git lfs install
+# Git LFS needed for deepspeech development
+# sudo add-apt-repository ppa:git-core/ppa
+# curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+# sudo apt-get install git-lfs
+# git lfs install
 # Get Dependencies
 sudo apt install libsox3 libstdc++6 libgomp1 libpthread-stubs0-dev sox
 # Get Deepspeech 
