@@ -1,7 +1,7 @@
 import os
 import youtube_dl
 
-VIDEO_URL = 'https://www.youtube.com/watch?v=6cgxSL926N8'
+# VIDEO_URL = 'https://www.youtube.com/watch?v=6cgxSL926N8'
 
 
 class MyLogger(object):
@@ -39,8 +39,9 @@ YDL_OPTS = {
     'progress_hooks': [my_hook],
 }
 
-ydl = youtube_dl.YoutubeDL(YDL_OPTS)
-info_dict = ydl.extract_info(VIDEO_URL, download=False)
+def get_audio(VIDEO_URL):
+    ydl = youtube_dl.YoutubeDL(YDL_OPTS)
+    info_dict = ydl.extract_info(VIDEO_URL, download=False)
 
-ydl.download([VIDEO_URL])
-move_audio_file_to_directory(info_dict, 'wav', 'downloads/')
+    ydl.download([VIDEO_URL])
+    move_audio_file_to_directory(info_dict, 'wav', 'downloads/')
