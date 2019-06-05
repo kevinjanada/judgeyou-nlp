@@ -18,13 +18,13 @@ def my_hook(download):
     if download['status'] == 'finished':
         print('Done downloading, now converting ...')
 
-def move_audio_file_to_directory(INFO_DICT, EXT, DIR):
-    TITLE = INFO_DICT['title']
-    UPLOADER = INFO_DICT['uploader']
-    AUDIO_FILE = '{uploader} {title}.{ext}'.format(uploader=UPLOADER, title=TITLE, ext=EXT)
-    if '/' in DIR == False:
-        DIR += '/'
-    os.rename(AUDIO_FILE, DIR + AUDIO_FILE)
+# def move_audio_file_to_directory(INFO_DICT, EXT, DIR):
+#     TITLE = INFO_DICT['title']
+#     UPLOADER = INFO_DICT['uploader']
+#     AUDIO_FILE = '{uploader} {title}.{ext}'.format(uploader=UPLOADER, title=TITLE, ext=EXT)
+#     if '/' in DIR == False:
+#         DIR += '/'
+#     os.rename(AUDIO_FILE, DIR + AUDIO_FILE)
 
 YDL_OPTS = {
     'format': 'bestaudio/best',
@@ -34,14 +34,17 @@ YDL_OPTS = {
         'preferredcodec': 'wav',
         'preferredquality': '192',
     }],
-    'outtmpl': '%(uploader)s %(title)s.%(ext)s',
+    'outtmpl': 'speech_analyzer/judgeyou_nlp/downloads/%(uploader)s %(title)s.%(ext)s',
     'logger': MyLogger(),
     'progress_hooks': [my_hook],
 }
 
 def get_audio(VIDEO_URL):
     ydl = youtube_dl.YoutubeDL(YDL_OPTS)
-    info_dict = ydl.extract_info(VIDEO_URL, download=False)
+    INFO_DICT = ydl.extract_info(VIDEO_URL, download=False)
 
     ydl.download([VIDEO_URL])
-    move_audio_file_to_directory(info_dict, 'wav', 'downloads/')
+    TITLE = INFO_DICT['title']
+    UPLOADER = INFO_DICT['uploader']
+    AUDIO_FILE = 'speech_analyzer/judgeyou_nlp/downloads/{uploader} {title}.{ext}'.format(uploader=UPLOADER, title=TITLE, ext='wav')
+    return AUDIO_FILE
